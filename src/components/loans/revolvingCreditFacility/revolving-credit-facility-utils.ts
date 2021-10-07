@@ -1,37 +1,41 @@
+import { format } from "date-fns";
+import add from "date-fns/add";
+
 export const calculateRepayments = (
   amountRequested: number,
-  duration: number
+  duration: number,
+  interestRequested: number
 ) => {
-  console.log(amountRequested);
-  console.log(duration);
+  let repayments = [];
+
+  let startingDate = new Date(2019, 5, 30);
+
+  const principalAmount = amountRequested / duration;
+  let totalInterest = 0;
+  for (let index = 0; index < duration; index++) {
+    const repayment = principalAmount * index;
+    const amountMinusRepayment = amountRequested - repayment;
+    const currentInterest = (amountMinusRepayment * interestRequested) / 100;
+    totalInterest = totalInterest + currentInterest;
+    repayments.push({
+      repaymentDate: format(
+        add(startingDate, {
+          months: index,
+        }),
+        "dd/MM/yyyy"
+      ),
+      principalAmount,
+      interest: currentInterest,
+      totalRepayment: principalAmount + currentInterest,
+    });
+  }
 
   return {
-    totals: { principal: 10000, interest: 750, totalRepayment: 10750 },
-    repayments: [
-      {
-        repaymentDate: "30/06/2019",
-        principalAmount: 2500,
-        interest: 300,
-        totalRepayment: 2800,
-      },
-      {
-        repaymentDate: "30/07/2019",
-        principalAmount: 2500,
-        interest: 300,
-        totalRepayment: 2800,
-      },
-      {
-        repaymentDate: "30/08/2019",
-        principalAmount: 2500,
-        interest: 300,
-        totalRepayment: 2800,
-      },
-      {
-        repaymentDate: "30/09/2019",
-        principalAmount: 2500,
-        interest: 300,
-        totalRepayment: 2800,
-      },
-    ],
+    totals: {
+      principal: amountRequested,
+      interest: totalInterest,
+      totalRepayment: amountRequested + totalInterest,
+    },
+    repayments,
   };
 };

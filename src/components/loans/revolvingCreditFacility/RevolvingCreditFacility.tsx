@@ -16,7 +16,7 @@ const RevolvingCreditFacility = ({
     setInterest(event.target.value);
   };
 
-  const calculations = calculateRepayments(amountRequested, duration);
+  const calculations = calculateRepayments(amountRequested, duration, interest);
 
   return (
     <div style={{ backgroundColor: "lightsalmon" }}>
