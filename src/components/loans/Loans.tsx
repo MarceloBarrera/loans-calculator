@@ -4,6 +4,7 @@ import { loansReducer, initialState, ActionTypes } from "./LoansReducer";
 import fetchLimitations from "./Api";
 
 import LoanCalculator from "./loanCalculator/LoanCalculator";
+import { checkLimits } from "./loans-utils";
 
 import "./Loans.css";
 
@@ -73,15 +74,15 @@ const Loans = () => {
               <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
-                limitation={state.limitations.revolving_credit_facility}
                 applyUpFrontFee={false}
+                showErrorMessage={checkLimits(amount, duration, state.limitations.revolving_credit_facility)}
                 calculatorName="Revolving Credit Facility"
               />
               <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
-                limitation={state.limitations.business_loan}
                 applyUpFrontFee={true}
+                showErrorMessage={checkLimits(amount, duration, state.limitations.business_loan)}
                 calculatorName="Business loan"
               />
             </>

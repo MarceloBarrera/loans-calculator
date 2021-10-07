@@ -1,23 +1,22 @@
 import { useState } from "react";
-import { calculateRepayments, checkLimits } from "../loans-utils";
-import { LimitationItem } from "../LoansReducer";
+import { calculateRepayments } from "../loans-utils";
 import "../../loans/Loans.css";
-
+export interface LoanCalculatorProps  {
+  amountRequested: number;
+  duration: number;
+  applyUpFrontFee: boolean;
+  calculatorName: string;
+  showErrorMessage: string;
+  interestRate?: number;
+}
 const LoanCalculator = ({
   amountRequested,
   duration,
-  limitation,
   calculatorName,
   applyUpFrontFee = false,
+  showErrorMessage,
   interestRate = 3,
-}: {
-  amountRequested: number;
-  duration: number;
-  limitation: LimitationItem | undefined;
-  applyUpFrontFee: boolean;
-  calculatorName: string;
-  interestRate?: number;
-}) => {
+}: LoanCalculatorProps) => {
   const [interest, setInterest] = useState(interestRate);
   const handleChange = (event: any) => {
     setInterest(parseInt(event.target.value));
@@ -30,7 +29,7 @@ const LoanCalculator = ({
     undefined,
     applyUpFrontFee
   );
-  const showErrorMessage = checkLimits(amountRequested, duration, limitation);
+  
   return (
     <div style={{ backgroundColor: "gainsboro", padding: "5px" }}>
       <div>

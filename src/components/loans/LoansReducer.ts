@@ -68,6 +68,6 @@ export const loansReducer = (state: IState, action: Action) => {
       };
 
     default:
-      return state;
+      throw new Error(`Unsupported action: ${action}`)
   }
 };

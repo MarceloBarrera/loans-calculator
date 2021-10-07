@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
-describe("bmi questionnaire", () => {
-  it("open app", () => {
+describe("Loans smoking test", () => {
+  it("Open app", () => {
     cy.visit("/");
   });
 
