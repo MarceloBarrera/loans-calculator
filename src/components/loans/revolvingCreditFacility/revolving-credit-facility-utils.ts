@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import add from "date-fns/add";
+import { LimitationItem } from "../LoansReducer";
 
 export const calculateRepayments = (
   amountRequested: number,
@@ -43,19 +44,20 @@ export const calculateRepayments = (
   };
 };
 
-type Limitations = {
-  amountMin: number;
-  amountMax: number;
-  durationMin: number;
-  durationMax: number;
-};
 export const checkLimits = (
   amountRequested: number,
   duration: number,
-  limitations: Limitations
+  limitation: LimitationItem | undefined
 ) => {
-  if (duration < limitations.durationMin) {
-    return `duration: ${duration} cannot be less than: ${limitations.durationMin}`;
+  if (!limitation) {
+    return "";
+  }
+
+  if (duration < limitation.duration_min) {
+    return `Duration: ${duration} cannot be less than: ${limitation.duration_min}`;
+  }
+  if (amountRequested < limitation.amount_min) {
+    return `Amount requested: ${amountRequested} cannot be less than: ${limitation.amount_min}`;
   }
   return "";
 };
