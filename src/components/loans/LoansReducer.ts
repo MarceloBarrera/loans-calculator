@@ -1,8 +1,8 @@
 export interface LimitationItem {
   amount_min: number;
-  amount_max: string;
+  amount_max: number;
   duration_min: number;
-  duration_max: string;
+  duration_max: number;
 }
 
 export interface Limitations {

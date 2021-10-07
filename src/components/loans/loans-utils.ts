@@ -67,8 +67,16 @@ export const checkLimits = (
   if (duration < limitation.duration_min) {
     return `Duration: ${duration} cannot be less than: ${limitation.duration_min}`;
   }
+  if (duration > limitation.duration_max) {
+    return `Duration: ${duration} cannot be greater than: ${limitation.duration_max}`;
+  }
   if (amountRequested < limitation.amount_min) {
     return `Amount requested: ${amountRequested} cannot be less than: ${limitation.amount_min}`;
   }
+
+  if (amountRequested > limitation.amount_max) {
+    return `Amount requested: ${amountRequested} cannot be greater than: ${limitation.amount_max}`;
+  }
+
   return "";
 };

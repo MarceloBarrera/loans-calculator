@@ -1,4 +1,7 @@
-import { calculateRepayments } from "../../../components/loans/loans-utils";
+import {
+  calculateRepayments,
+  checkLimits,
+} from "../../../components/loans/loans-utils";
 
 const expectedResult = {
   totals: { principal: 10000, interest: 750, totalRepayment: 10750 },
@@ -84,4 +87,58 @@ it("should calculate repayments BL", () => {
   );
 
   expect(result).toEqual(expectedResultBL);
+});
+
+describe("check limits", () => {
+  const limitation = {
+    amount_min: 1000,
+    amount_max: 150000,
+    duration_min: 1,
+    duration_max: 12,
+  };
+  it("should see error message when amount is less than min", () => {
+    const amount = 100;
+    const result = checkLimits(amount, 4, limitation);
+
+    expect(result).toEqual(
+      `Amount requested: ${amount} cannot be less than: ${limitation.amount_min}`
+    );
+  });
+
+  it("should see error message when amount is greater than max", () => {
+    const amount = 160000;
+    const result = checkLimits(amount, 4, limitation);
+
+    expect(result).toEqual(
+      `Amount requested: ${amount} cannot be greater than: ${limitation.amount_max}`
+    );
+  });
+
+  it("should see error message when duration is greater than max", () => {
+    const amount = 10000;
+    const duration = 13;
+    const result = checkLimits(amount, duration, limitation);
+
+    expect(result).toEqual(
+      `Duration: ${duration} cannot be greater than: ${limitation.duration_max}`
+    );
+  });
+
+  it("should see error message when duration is less than min", () => {
+    const amount = 10000;
+    const duration = 0;
+    const result = checkLimits(amount, duration, limitation);
+
+    expect(result).toEqual(
+      `Duration: ${duration} cannot be less than: ${limitation.duration_min}`
+    );
+  });
+
+  it("should see NO error message", () => {
+    const amount = 10000;
+    const duration = 1;
+    const result = checkLimits(amount, duration, limitation);
+
+    expect(result).toEqual(``);
+  });
 });

@@ -69,7 +69,7 @@ const LoanCalculator = ({
           </div>
         </div>
       ) : (
-        <p>{showErrorMessage}</p>
+        <p style={{ color: "orangered" }}>{showErrorMessage}</p>
       )}
 
       <div>{calculatorName}</div>
