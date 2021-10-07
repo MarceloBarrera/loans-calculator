@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import add from "date-fns/add";
-import { LimitationItem } from "../LoansReducer";
+import { LimitationItem } from "./LoansReducer";
 
 export const calculateRepayments = (
   amountRequested: number,

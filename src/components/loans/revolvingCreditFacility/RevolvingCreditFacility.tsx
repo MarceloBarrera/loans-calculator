@@ -2,10 +2,7 @@ import { useState } from "react";
 import "../../loans/Loans.css";
 import { LimitationItem } from "../LoansReducer";
 
-import {
-  calculateRepayments,
-  checkLimits,
-} from "./revolving-credit-facility-utils";
+import { calculateRepayments, checkLimits } from "../loans-utils";
 
 const RevolvingCreditFacility = ({
   amountRequested,

@@ -1,4 +1,4 @@
-import { calculateRepayments } from "../../../components/loans/revolvingCreditFacility/revolving-credit-facility-utils";
+import { calculateRepayments } from "../../../components/loans/loans-utils";
 
 const expectedResult = {
   totals: { principal: 10000, interest: 750, totalRepayment: 10750 },
