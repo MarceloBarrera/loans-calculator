@@ -2,16 +2,24 @@ import { format } from "date-fns";
 import add from "date-fns/add";
 import { LimitationItem } from "./LoansReducer";
 
+const getTodayDate = () => {
+  const dateObj = new Date();
+  return new Date(
+    dateObj.getUTCFullYear(),
+    dateObj.getUTCMonth() + 1,
+    dateObj.getUTCDate()
+  );
+};
 export const calculateRepayments = (
   amountRequested: number,
   duration: number,
   interestRequested: number,
+  startingDateParam?: Date,
   applyUpFrontFee: boolean = false
 ) => {
-  let repayments = [];
+  let startingDate = startingDateParam || getTodayDate();
 
-  // todo: use today's date
-  let startingDate = new Date(2019, 5, 30);
+  let repayments = [];
 
   let upFrontFee = 0;
   if (applyUpFrontFee) {

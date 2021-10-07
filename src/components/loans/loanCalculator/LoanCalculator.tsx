@@ -27,11 +27,12 @@ const LoanCalculator = ({
     amountRequested,
     duration,
     interest,
+    undefined,
     applyUpFrontFee
   );
   const showErrorMessage = checkLimits(amountRequested, duration, limitation);
   return (
-    <div style={{ backgroundColor: "gainsboro" }}>
+    <div style={{ backgroundColor: "gainsboro", padding: "5px" }}>
       <div>
         <label>Interest rate</label>
         <input

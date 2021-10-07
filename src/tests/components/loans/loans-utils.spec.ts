@@ -63,6 +63,7 @@ const expectedResultBL = {
   ],
 };
 
+let startingDate = new Date(2019, 5, 30);
 it("should calculate repayments RCF", () => {
   const amountRequested = 10000;
   const duration = 4;
@@ -70,7 +71,8 @@ it("should calculate repayments RCF", () => {
   const result = calculateRepayments(
     amountRequested,
     duration,
-    interestRequested
+    interestRequested,
+    startingDate
   );
   expect(result).toEqual(expectedResult);
 });
@@ -83,6 +85,7 @@ it("should calculate repayments BL", () => {
     amountRequested,
     duration,
     interestRequested,
+    startingDate,
     true
   );
 
