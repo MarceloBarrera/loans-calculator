@@ -19,6 +19,8 @@
 .loan-request input {
   width: 80px;
   margin-left: 10px;
+  height: 20px;
+  align-self: center;
 }
 .loan-request label {
   padding: 5px;
@@ -35,6 +37,13 @@
 
   align-items: center;
   column-gap: 10px;
+}
+
+.loan-calculations input {
+  width: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 20px;
 }
 
 @media (max-width: 600px) {

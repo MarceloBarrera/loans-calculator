@@ -75,7 +75,11 @@ const Loans = () => {
                 duration={duration}
                 limitation={state.limitations.revolving_credit_facility}
               />
-              <BusinessLoans amountRequested={10000} duration={4} />
+              <BusinessLoans
+                amountRequested={amount}
+                duration={duration}
+                limitation={state.limitations.business_loan}
+              />
             </>
           )}
         </div>
