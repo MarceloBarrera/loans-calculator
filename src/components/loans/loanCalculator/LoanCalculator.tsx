@@ -1,35 +1,42 @@
 import { useState } from "react";
-import "../../loans/Loans.css";
-import { LimitationItem } from "../LoansReducer";
-
 import { calculateRepayments, checkLimits } from "../loans-utils";
+import { LimitationItem } from "../LoansReducer";
+import "../../loans/Loans.css";
 
-const RevolvingCreditFacility = ({
+const LoanCalculator = ({
   amountRequested,
   duration,
   limitation,
+  calculatorName,
+  applyUpFrontFee = false,
   interestRate = 3,
 }: {
   amountRequested: number;
   duration: number;
   limitation: LimitationItem | undefined;
+  applyUpFrontFee: boolean;
+  calculatorName: string;
   interestRate?: number;
 }) => {
-  const [interest, setInterest] = useState<number>(interestRate);
+  const [interest, setInterest] = useState(interestRate);
   const handleChange = (event: any) => {
     setInterest(parseInt(event.target.value));
   };
 
-  const calculations = calculateRepayments(amountRequested, duration, interest);
+  const calculations = calculateRepayments(
+    amountRequested,
+    duration,
+    interest,
+    applyUpFrontFee
+  );
   const showErrorMessage = checkLimits(amountRequested, duration, limitation);
-
   return (
-    <div style={{ backgroundColor: "lightsalmon" }}>
+    <div style={{ backgroundColor: "gainsboro" }}>
       <div>
-        <label>interest rate</label>
+        <label>Interest rate</label>
         <input
           type="number"
-          name="interestRateRcf"
+          name="interestRate"
           value={interest}
           onChange={handleChange}
         ></input>
@@ -64,9 +71,10 @@ const RevolvingCreditFacility = ({
       ) : (
         <p>{showErrorMessage}</p>
       )}
-      <div>Revolving Credit Facility</div>
+
+      <div>{calculatorName}</div>
     </div>
   );
 };
 
-export default RevolvingCreditFacility;
+export default LoanCalculator;

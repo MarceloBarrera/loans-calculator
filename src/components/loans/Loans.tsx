@@ -3,8 +3,8 @@ import { useState, useEffect, useReducer, useCallback } from "react";
 import { loansReducer, initialState, ActionTypes } from "./LoansReducer";
 import fetchLimitations from "./Api";
 
-import BusinessLoans from "./businessLoan/BusinessLoan";
-import RevolvingCreditFacility from "./revolvingCreditFacility/RevolvingCreditFacility";
+import LoanCalculator from "./loanCalculator/LoanCalculator";
+
 import "./Loans.css";
 
 const Loans = () => {
@@ -70,15 +70,19 @@ const Loans = () => {
             <p>Fetching limitations...</p>
           ) : (
             <>
-              <RevolvingCreditFacility
+              <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
                 limitation={state.limitations.revolving_credit_facility}
+                applyUpFrontFee={false}
+                calculatorName="Revolving Credit Facility"
               />
-              <BusinessLoans
+              <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
                 limitation={state.limitations.business_loan}
+                applyUpFrontFee={true}
+                calculatorName="Business loan"
               />
             </>
           )}
