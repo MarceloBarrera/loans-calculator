@@ -49,9 +49,10 @@
 
 .loan-calculations .loan-table {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   max-width: 480px;
-  padding: 10px;
+  padding: 5px;
   background-color: aliceblue;
-  margin: 10px;
+  margin: 5px;
+  column-gap: 5px;
 }

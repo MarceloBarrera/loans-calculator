@@ -1,4 +1,6 @@
+import BusinessLoans from "./businessLoan/BusinessLoan";
 import "./Loans.css";
+import RevolvingCreditFacility from "./revolvingCreditFacility/RevolvingCreditFacility";
 const Loans = () => (
   <>
     <div className="container-loan">
@@ -14,92 +16,8 @@ const Loans = () => (
       </div>
 
       <div className="loan-calculations">
-        <div style={{ backgroundColor: "lightsalmon" }}>
-          <div>
-            <label>interest rate</label>
-            <input
-              type="number"
-              name="interestRateRcf"
-              defaultValue="3"
-            ></input>
-            <span>(in %)</span>
-          </div>
-          <div className="loan-table">
-            <div>Row 1</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 2</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 3</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 4</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 5</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 6</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 7</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 8</div>
-            <div>2.00</div>
-            <div>A description</div>
-          </div>
-          <div>Revolving Credit Facility</div>
-        </div>
-        <div style={{ backgroundColor: "lightseagreen" }}>
-          <div>
-            <label>interest rate</label>
-            <input type="number" name="interestRateBl" defaultValue="3"></input>
-            <span>(in %)</span>
-          </div>
-          <div className="loan-table">
-            <div>Row 1</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 2</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 3</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 4</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 5</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 6</div>
-            <div>2.00</div>
-            <div>A description</div>
-
-            <div>Row 7</div>
-            <div>1.00</div>
-            <div>Description</div>
-
-            <div>Row 8</div>
-            <div>2.00</div>
-            <div>A description</div>
-          </div>
-          <div>Business loan</div>
-        </div>
+        <RevolvingCreditFacility amountRequested={10000} duration={4} />
+        <BusinessLoans amountRequested={10000} duration={4} />
       </div>
     </div>
   </>
