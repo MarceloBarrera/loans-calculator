@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../../loans/Loans.css";
-import { calculateRepayments } from "./revolving-credit-facility-utils";
+import {
+  calculateRepayments,
+  checkLimits,
+} from "./revolving-credit-facility-utils";
 
 const RevolvingCreditFacility = ({
   amountRequested,
@@ -18,6 +21,13 @@ const RevolvingCreditFacility = ({
 
   const calculations = calculateRepayments(amountRequested, duration, interest);
 
+  const showErrorMessage = checkLimits(amountRequested, duration, {
+    amountMin: 1000,
+    amountMax: 150000,
+    durationMin: 1,
+    durationMax: 12,
+  });
+
   return (
     <div style={{ backgroundColor: "lightsalmon" }}>
       <div>
@@ -31,29 +41,34 @@ const RevolvingCreditFacility = ({
         <span>(in %)</span>
       </div>
 
-      <div className="loan-table">
-        <div>Repayment date</div>
-        <div>Principal</div>
-        <div>Interest</div>
-        <div>Total repayment</div>
-      </div>
-      {calculations.repayments.map((r, index) => {
-        return (
-          <div key={index} className="loan-table">
-            <div>{r.repaymentDate}</div>
-            <div>{r.principalAmount}</div>
-            <div>{r.interest}</div>
-            <div>{r.totalRepayment}</div>
+      {!showErrorMessage ? (
+        <div>
+          <div className="loan-table">
+            <div>Repayment date</div>
+            <div>Principal</div>
+            <div>Interest</div>
+            <div>Total repayment</div>
           </div>
-        );
-      })}
-      <div className="loan-table">
-        <div>Total</div>
-        <div>{calculations.totals.principal}</div>
-        <div>{calculations.totals.interest}</div>
-        <div>{calculations.totals.totalRepayment}</div>
-      </div>
-
+          {calculations.repayments.map((r, index) => {
+            return (
+              <div key={index} className="loan-table">
+                <div>{r.repaymentDate}</div>
+                <div>{r.principalAmount}</div>
+                <div>{r.interest}</div>
+                <div>{r.totalRepayment}</div>
+              </div>
+            );
+          })}
+          <div className="loan-table">
+            <div>Total</div>
+            <div>{calculations.totals.principal}</div>
+            <div>{calculations.totals.interest}</div>
+            <div>{calculations.totals.totalRepayment}</div>
+          </div>
+        </div>
+      ) : (
+        <p>{showErrorMessage}</p>
+      )}
       <div>Revolving Credit Facility</div>
     </div>
   );
