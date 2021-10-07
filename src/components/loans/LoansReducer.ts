@@ -18,7 +18,7 @@ export interface IState {
 
 export const initialState: IState = {
   limitations: {},
-  isFetching: true,
+  isFetching: false,
   errorOccurredWhenFetching: false,
 };
 

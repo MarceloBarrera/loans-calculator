@@ -8,7 +8,7 @@ import { checkLimits } from "./loans-utils";
 
 import "./Loans.css";
 
-const Loans = () => {
+const Loans = ({ fetchData }: { fetchData: boolean }) => {
   const [amount, setAmount] = useState<number>(10000);
   const [duration, setDuration] = useState<number>(4);
 
@@ -29,15 +29,17 @@ const Loans = () => {
 
   useEffect(() => {
     (async function () {
-      loadData();
+      if(fetchData) {
+        loadData();
+      }
     })();
-  }, [loadData]);
+  }, [loadData, fetchData]);
 
   const handleAmount = (event: any) => {
     setAmount(parseInt(event.target.value));
   };
 
-  const handleDuration = (event: any) => {
+  const handleDuration = (event: any) => {    
     setDuration(parseInt(event.target.value));
   };
 
@@ -69,7 +71,7 @@ const Loans = () => {
         <div className="loan-calculations">
           {state.isFetching ? (
             <p>Fetching limitations...</p>
-          ) : (
+          ) : ( 
             <>
               <LoanCalculator
                 amountRequested={amount}
