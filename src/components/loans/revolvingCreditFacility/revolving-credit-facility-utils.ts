@@ -8,6 +8,7 @@ export const calculateRepayments = (
 ) => {
   let repayments = [];
 
+  // todo: use today's date
   let startingDate = new Date(2019, 5, 30);
 
   const principalAmount = amountRequested / duration;
@@ -24,17 +25,19 @@ export const calculateRepayments = (
         }),
         "dd/MM/yyyy"
       ),
-      principalAmount,
-      interest: currentInterest,
-      totalRepayment: principalAmount + currentInterest,
+      principalAmount: parseFloat(principalAmount.toFixed(2)),
+      interest: parseFloat(currentInterest.toFixed(2)),
+      totalRepayment: parseFloat(
+        (principalAmount + currentInterest).toFixed(2)
+      ),
     });
   }
 
   return {
     totals: {
       principal: amountRequested,
-      interest: totalInterest,
-      totalRepayment: amountRequested + totalInterest,
+      interest: parseFloat(totalInterest.toFixed(2)),
+      totalRepayment: parseFloat((amountRequested + totalInterest).toFixed(2)),
     },
     repayments,
   };

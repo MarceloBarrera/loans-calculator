@@ -11,9 +11,9 @@ const RevolvingCreditFacility = ({
   duration: number;
   interestRate?: number;
 }) => {
-  const [interest, setInterest] = useState(interestRate);
+  const [interest, setInterest] = useState<number>(interestRate);
   const handleChange = (event: any) => {
-    setInterest(event.target.value);
+    setInterest(parseInt(event.target.value));
   };
 
   const calculations = calculateRepayments(amountRequested, duration, interest);
