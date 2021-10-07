@@ -5,19 +5,30 @@ import { LimitationItem } from "../LoansReducer";
 export const calculateRepayments = (
   amountRequested: number,
   duration: number,
-  interestRequested: number
+  interestRequested: number,
+  applyUpFrontFee: boolean = false
 ) => {
   let repayments = [];
 
   // todo: use today's date
   let startingDate = new Date(2019, 5, 30);
 
+  let upFrontFee = 0;
+  if (applyUpFrontFee) {
+    upFrontFee = (amountRequested * 10) / 100;
+  }
+
   const principalAmount = amountRequested / duration;
   let totalInterest = 0;
   for (let index = 0; index < duration; index++) {
     const repayment = principalAmount * index;
     const amountMinusRepayment = amountRequested - repayment;
-    const currentInterest = (amountMinusRepayment * interestRequested) / 100;
+    let currentInterest = (amountMinusRepayment * interestRequested) / 100;
+
+    if (index === 0 && applyUpFrontFee) {
+      currentInterest = currentInterest + upFrontFee;
+    }
+
     totalInterest = totalInterest + currentInterest;
     repayments.push({
       repaymentDate: format(
