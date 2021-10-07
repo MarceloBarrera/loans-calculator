@@ -34,7 +34,7 @@
 .loan-calculations {
   display: flex;
   justify-content: space-between;
-
+  text-align: center;
   align-items: center;
   column-gap: 10px;
 }

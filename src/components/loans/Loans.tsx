@@ -29,18 +29,18 @@ const Loans = ({ fetchData }: { fetchData: boolean }) => {
 
   useEffect(() => {
     (async function () {
-      if(fetchData) {
+      if (fetchData) {
         loadData();
       }
     })();
   }, [loadData, fetchData]);
 
   const handleAmount = (event: any) => {
-    setAmount(parseInt(event.target.value));
+    setAmount(parseInt(event.target.value) || 0);
   };
 
-  const handleDuration = (event: any) => {    
-    setDuration(parseInt(event.target.value));
+  const handleDuration = (event: any) => {
+    setDuration(parseInt(event.target.value) || 0);
   };
 
   return (
@@ -71,20 +71,28 @@ const Loans = ({ fetchData }: { fetchData: boolean }) => {
         <div className="loan-calculations">
           {state.isFetching ? (
             <p>Fetching limitations...</p>
-          ) : ( 
+          ) : (
             <>
               <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
                 applyUpFrontFee={false}
-                showErrorMessage={checkLimits(amount, duration, state.limitations.revolving_credit_facility)}
+                showErrorMessage={checkLimits(
+                  amount,
+                  duration,
+                  state.limitations.revolving_credit_facility
+                )}
                 calculatorName="Revolving Credit Facility"
               />
               <LoanCalculator
                 amountRequested={amount}
                 duration={duration}
                 applyUpFrontFee={true}
-                showErrorMessage={checkLimits(amount, duration, state.limitations.business_loan)}
+                showErrorMessage={checkLimits(
+                  amount,
+                  duration,
+                  state.limitations.business_loan
+                )}
                 calculatorName="Business loan"
               />
             </>

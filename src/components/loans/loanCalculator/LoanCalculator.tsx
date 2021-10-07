@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { calculateRepayments } from "../loans-utils";
 import "../../loans/Loans.css";
-export interface LoanCalculatorProps  {
+export interface LoanCalculatorProps {
   amountRequested: number;
   duration: number;
   applyUpFrontFee: boolean;
@@ -19,7 +19,7 @@ const LoanCalculator = ({
 }: LoanCalculatorProps) => {
   const [interest, setInterest] = useState(interestRate);
   const handleChange = (event: any) => {
-    setInterest(parseInt(event.target.value));
+    setInterest(parseInt(event.target.value) || 0);
   };
 
   const calculations = calculateRepayments(
@@ -29,7 +29,7 @@ const LoanCalculator = ({
     undefined,
     applyUpFrontFee
   );
-  
+
   return (
     <div style={{ backgroundColor: "gainsboro", padding: "5px" }}>
       <div>

@@ -19,8 +19,9 @@ describe("Loans smoking test", () => {
 
   it("Business loan show error message when amount is 1000 ", () => {
     cy.get("p").should("not.exist");
-    cy.get("#amountRequested").clear().type("1000");
-    cy.contains("Amount requested: 1000 cannot be less than: 10000");
+    cy.get("#amountRequested").clear();
+    cy.contains("Amount requested: 0 cannot be less than: 1000");
+    cy.contains("Amount requested: 0 cannot be less than: 10000");
     cy.get("p").should("be.visible");
   });
 });
