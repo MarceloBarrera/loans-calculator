@@ -47,20 +47,23 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## My Notes
 
+Run unit tests: `npm test`
+Run cypress e2e tests: `npm start & npx cypress run` (headless) or `npm start & npx cypress open` (to open cypress UI)
+
 I choose React because is a very well known framework, I choose CRA to deal with all boiler plate (web pack, babel, typescript, lint, etc, under the hood)
 I would probably add custom hooks.
 I choose date-fns to quickly deal with format dates and adding months, I prefer this over moment.js
 I would add a formatter for the currency symbol.
-Maybe show all errors and not 1 at the time.
-I would add code coverage report, pre-processor SAAS, post-processor and husky
+UX discussion: Maybe show all errors and not 1 at the time. Maybe add button to show validation error
+I would add pre-processor SAAS, post-processor and husky
 
-Probably make it better looking, think about responsive design, logging support to track potential issues in production, dockerization, automation for checking security issues of npm packages, report test coverage, CI and CD, etc.
+Probably make it better looking, logging support to track potential issues in production, dockerization, automation for checking security issues of npm packages, report test coverage, CI and CD, etc.
 
-The e2e tests should use a mock data api, at the moment is not ideal to query the real API!.
+The cypress e2e tests should use a mock data api, at the moment is not ideal to query the real API!.
 
 Probably add/create a "loading" component to signify that an async call is going on for the user.
 
-Unit testing more to achieve 100% coverage
+More Unit testing to achieve 100% test coverage
 
 Performance:
 I would use a tool like https://gtmetrix.com/ or google one: https://developers.google.com/speed/pagespeed/insights/
@@ -72,8 +75,8 @@ I would use a tool like https://gtmetrix.com/ or google one: https://developers.
     "name": "Marcelo Barrera",
     "email": "marcelodarmis@gmail.com",
     "bio": "Seasoned, passionate and open-minded software developer with many years of commercial experience implementing full stack application systems.",
-    "hobbies": [ "Cycling", "Football","Reading"],
-    "interests": [ "Clean code", "Scalability", "Reusability","Testability", "Always learning new things"],
+    "hobbies": [ "Cycling", "Football", "Reading"],
+    "interests": [ "Clean code", "Scalability", "Reusability", "Testability", "Always learning new things"],
     "humble": true,
     "curious": true,
     "easygoing": true,
