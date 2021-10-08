@@ -1,6 +1,6 @@
 const fetchLimitations = () => {
   return window
-    .fetch("http://www.mocky.io/v2/5d4aa9e93300006f000f5ea9", {
+    .fetch("https://www.mocky.io/v2/5d4aa9e93300006f000f5ea9", {
       method: "GET",
     })
     .then(async (response) => {
