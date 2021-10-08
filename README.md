@@ -44,3 +44,45 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## My Notes
+
+I choose React because is a very well known framework, I choose CRA to deal with all boiler plate (web pack, babel, typescript, lint, etc, under the hood)
+I would probably add custom hooks.
+I choose date-fns to quickly deal with format dates and adding months, I prefer this over moment.js
+I would add a formatter for the currency symbol.
+Maybe show all errors and not 1 at the time.
+I would add code coverage report, pre-processor SAAS, post-processor and husky
+
+Probably make it better looking, think about responsive design, logging support to track potential issues in production, dockerization, automation for checking security issues of npm packages, report test coverage, CI and CD, etc.
+
+The e2e tests should use a mock data api, at the moment is not ideal to query the real API!.
+
+Probably add/create a "loading" component to signify that an async call is going on for the user.
+
+Unit testing more to achieve 100% coverage
+
+Performance:
+I would use a tool like https://gtmetrix.com/ or google one: https://developers.google.com/speed/pagespeed/insights/
+-lang support maybe
+-cypress automation via Gitlab for example
+
+```
+{
+    "name": "Marcelo Barrera",
+    "email": "marcelodarmis@gmail.com",
+    "bio": "Seasoned, passionate and open-minded software developer with many years of commercial experience implementing full stack application systems.",
+    "hobbies": [ "Cycling", "Football","Reading"],
+    "interests": [ "Clean code", "Scalability", "Reusability","Testability", "Always learning new things"],
+    "humble": true,
+    "curious": true,
+    "easygoing": true,
+    "foosball_champion": true,
+    "adaptable": true,
+    "team_player": true,
+    "github_url": "https://github.com/MarceloBarrera",
+    "stack_overflow_url": "https://stackoverflow.com/users/2789024/darmis",
+    "linkedin_url": "https://www.linkedin.com/in/marcelobarrera/",
+    "hireable": null
+}
+```
